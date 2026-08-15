@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  invites      Invite[]
+
+  @@map("admin_users")
+}
+
+enum InviteStatus {
+  PENDING
+  USED
+  REVOKED
+  EXPIRED
+}
+
+model Invite {
+  id          String       @id @default(cuid())
+  token       String       @unique
+  label       String?
+  status      InviteStatus @default(PENDING)
+  createdAt   DateTime     @default(now())
+  expiresAt   DateTime?
+  usedAt      DateTime?
+  createdBy   AdminUser    @relation(fields: [createdById], references: [id])
+  createdById String
+  member      Member?
+
+  @@index([status])
+  @@map("invites")
+}
+
+enum MemberStatus {
+  REGISTERED
+  PENDING_PAYMENT
+  ACTIVE
+  SUSPENDED
+}
+
+model Member {
+  id           String       @id @default(cuid())
+  name         String
+  email        String       @unique
+  passwordHash String
+  status       MemberStatus @default(PENDING_PAYMENT)
+  invite       Invite       @relation(fields: [inviteId], references: [id])
+  inviteId     String       @unique
+  createdAt    DateTime     @default(now())
+  activatedAt  DateTime?
+
+  @@index([status])
+  @@map("members")
+}

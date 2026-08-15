@@ -18,7 +18,6 @@ export const siteConfig = {
   ],
   links: {
     signUp: "/sign-up",
-    login: "/login",
     howToRegister: "/how-to-register",
     payment: "/payment",
     home: "/",
@@ -34,3 +33,9 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+/** Builds an absolute URL on the member portal subdomain (dashboard.<root domain>). */
+export function portalUrl(path = "/") {
+  const rootUrl = new URL(siteConfig.url);
+  return `${rootUrl.protocol}//dashboard.${rootUrl.host}${path}`;
+}

@@ -1,0 +1,20 @@
+import "server-only";
+import { cache } from "react";
+import { redirect } from "next/navigation";
+import { getAdminSession, getMemberSession } from "./session";
+
+export const verifyAdminSession = cache(async () => {
+  const session = await getAdminSession();
+  if (!session) {
+    redirect("/login");
+  }
+  return session;
+});
+
+export const verifyMemberSession = cache(async () => {
+  const session = await getMemberSession();
+  if (!session) {
+    redirect("/login");
+  }
+  return session;
+});

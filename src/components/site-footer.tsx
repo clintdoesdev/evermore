@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { Container } from "./container";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, portalUrl } from "@/lib/site-config";
 
 const columns = [
   {
@@ -10,7 +10,7 @@ const columns = [
       { href: "/", label: "Landing Page" },
       { href: "/how-to-register", label: "How to Register" },
       { href: "/sign-up", label: "Sign Up" },
-      { href: "/login", label: "Log In" },
+      { href: portalUrl("/login"), label: "Log In" },
       { href: "/payment", label: "Membership Plans" },
     ],
   },
