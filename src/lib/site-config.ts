@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Evermore",
   tagline: "Exist Beyond the Moment",
-  url: "https://www.evermore.app",
+  url: "https://evermorewebsite.com.ng",
   description:
     "Evermore is the membership platform built for people who want more than a moment — more growth, more access, more momentum. Join Evermore today and exist beyond the moment.",
   ogImage: "/og-image.jpg",
@@ -23,7 +23,7 @@ export const siteConfig = {
     home: "/",
   },
   contact: {
-    email: "support@evermore.app",
+    email: "support@evermorewebsite.com.ng",
   },
   social: {
     twitter: "https://twitter.com/evermore",

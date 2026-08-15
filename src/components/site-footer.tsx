@@ -17,7 +17,7 @@ const columns = [
     title: "Support",
     links: [
       { href: "/how-to-register", label: "Registration Help" },
-      { href: "mailto:support@evermore.app", label: "Contact Support" },
+      { href: "mailto:support@evermorewebsite.com.ng", label: "Contact Support" },
       { href: "/payment", label: "Billing & Payments" },
     ],
   },
