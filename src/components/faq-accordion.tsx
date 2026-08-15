@@ -11,7 +11,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-black/8 rounded-3xl border border-black/8 bg-white">
+    <div className="glass-card divide-y divide-white/8 overflow-hidden rounded-3xl">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         const panelId = `faq-panel-${index}`;
@@ -25,15 +25,17 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-white/[0.03]"
               >
-                <span className="font-display text-base font-semibold text-brand-ink sm:text-lg">
+                <span className="font-display text-base font-semibold text-white sm:text-lg">
                   {item.question}
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 text-brand-blue transition-transform duration-200 ${
-                    isOpen ? "rotate-45 border-brand-green text-brand-green" : ""
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                    isOpen
+                      ? "rotate-45 border-brand-green bg-brand-green/10 text-brand-green"
+                      : "border-white/15 text-white/60"
                   }`}
                 >
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -56,7 +58,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               }`}
             >
               <div className="min-h-0">
-                <p className="px-6 pb-6 text-sm leading-relaxed text-brand-ink/65 sm:text-base">
+                <p className="px-6 pb-6 text-sm leading-relaxed text-white/60 sm:text-base">
                   {item.answer}
                 </p>
               </div>

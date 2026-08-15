@@ -2,6 +2,7 @@ import Script from "next/script";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { FaqAccordion, type FaqItem } from "@/components/faq-accordion";
+import { Reveal } from "@/components/motion/reveal";
 
 export const landingFaqItems: FaqItem[] = [
   {
@@ -46,7 +47,7 @@ export function LandingFaq() {
   };
 
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="bg-surface-0 py-20 sm:py-24">
       <Script
         id="landing-faq-jsonld"
         type="application/ld+json"
@@ -58,9 +59,9 @@ export function LandingFaq() {
           title="Evermore, answered"
           description="Common questions about the Evermore website, registration, and membership."
         />
-        <div className="mt-12">
+        <Reveal delay={0.1} className="mt-12">
           <FaqAccordion items={landingFaqItems} />
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

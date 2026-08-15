@@ -10,6 +10,7 @@ const columns = [
       { href: "/", label: "Landing Page" },
       { href: "/how-to-register", label: "How to Register" },
       { href: "/sign-up", label: "Sign Up" },
+      { href: "/login", label: "Log In" },
       { href: "/payment", label: "Membership Plans" },
     ],
   },

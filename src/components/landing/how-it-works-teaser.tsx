@@ -1,6 +1,7 @@
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/button";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 
 const steps = [
   {
@@ -31,7 +32,7 @@ const steps = [
 
 export function HowItWorksTeaser() {
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="bg-surface-0 py-20 sm:py-24">
       <Container>
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
@@ -41,31 +42,30 @@ export function HowItWorksTeaser() {
               align="left"
               description="Creating an Evermore account takes less than five minutes. Here's exactly what happens when you register."
             />
-            <div className="mt-8">
+            <Reveal delay={0.15} className="mt-8">
               <Button href="/how-to-register" variant="secondary">
                 Read the full registration guide
               </Button>
-            </div>
+            </Reveal>
           </div>
 
-          <ol className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <StaggerGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {steps.map((step) => (
-              <li
-                key={step.number}
-                className="rounded-2xl border border-black/8 bg-brand-cloud/60 p-6"
-              >
-                <span className="font-display text-2xl font-semibold text-brand-green-dark">
-                  {step.number}
-                </span>
-                <h3 className="font-display mt-3 text-base font-semibold text-brand-ink">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-brand-ink/60">
-                  {step.description}
-                </p>
-              </li>
+              <StaggerItem key={step.number}>
+                <div className="glass-card group h-full rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-mint/30">
+                  <span className="font-display text-2xl font-semibold text-brand-mint">
+                    {step.number}
+                  </span>
+                  <h3 className="font-display mt-3 text-base font-semibold text-white">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/60">
+                    {step.description}
+                  </p>
+                </div>
+              </StaggerItem>
             ))}
-          </ol>
+          </StaggerGroup>
         </div>
       </Container>
     </section>

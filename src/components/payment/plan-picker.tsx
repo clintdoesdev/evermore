@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { plans, type Plan } from "@/lib/plans";
 
 export function PlanPicker({
@@ -11,18 +12,23 @@ export function PlanPicker({
 }) {
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-      {plans.map((plan) => {
+      {plans.map((plan, index) => {
         const isSelected = plan.id === selected;
         return (
-          <button
+          <motion.button
             key={plan.id}
             type="button"
             onClick={() => onSelect(plan.id)}
             aria-pressed={isSelected}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            whileTap={{ scale: 0.98 }}
             className={`relative flex h-full flex-col rounded-3xl border p-6 text-left transition-all duration-200 ${
               isSelected
-                ? "border-brand-green bg-white shadow-[0_24px_50px_-20px_rgba(34,197,94,0.45)] -translate-y-1"
-                : "border-black/10 bg-white/60 hover:-translate-y-0.5 hover:border-brand-blue/30"
+                ? "-translate-y-1 border-brand-green bg-gradient-to-b from-brand-green/12 to-white/[0.02] shadow-[0_24px_55px_-20px_rgba(34,197,94,0.5)]"
+                : "glass-card hover:-translate-y-0.5 hover:border-brand-mint/25"
             }`}
           >
             {plan.highlighted && (
@@ -31,15 +37,15 @@ export function PlanPicker({
               </span>
             )}
             <div className="flex items-center justify-between">
-              <span className="font-display text-base font-semibold text-brand-ink">
+              <span className="font-display text-base font-semibold text-white">
                 {plan.name}
               </span>
               <span
                 aria-hidden="true"
-                className={`flex h-5 w-5 items-center justify-center rounded-full border ${
+                className={`flex h-5 w-5 items-center justify-center rounded-full border transition-colors ${
                   isSelected
-                    ? "border-brand-green bg-brand-green text-white"
-                    : "border-black/20"
+                    ? "border-brand-green bg-brand-green text-brand-navy"
+                    : "border-white/25"
                 }`}
               >
                 {isSelected && (
@@ -56,27 +62,27 @@ export function PlanPicker({
               </span>
             </div>
 
-            <p className="font-display mt-3 text-3xl font-semibold text-brand-ink">
+            <p className="font-display mt-3 text-3xl font-semibold text-white">
               {plan.price}
-              <span className="text-sm font-medium text-brand-ink/50">
+              <span className="text-sm font-medium text-white/45">
                 {plan.period}
               </span>
             </p>
-            <p className="mt-1 text-xs font-medium text-brand-ink/45">
+            <p className="mt-1 text-xs font-medium text-white/45">
               {plan.billedAs}
             </p>
-            <p className="mt-3 text-sm text-brand-ink/60">{plan.description}</p>
+            <p className="mt-3 text-sm text-white/60">{plan.description}</p>
 
-            <ul className="mt-5 space-y-2.5 border-t border-black/8 pt-5">
+            <ul className="mt-5 space-y-2.5 border-t border-white/8 pt-5">
               {plan.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2 text-xs text-brand-ink/65 sm:text-sm">
+                <li key={feature} className="flex items-start gap-2 text-xs text-white/65 sm:text-sm">
                   <svg
                     width="14"
                     height="14"
                     viewBox="0 0 14 14"
                     fill="none"
                     aria-hidden="true"
-                    className="mt-0.5 shrink-0 text-brand-green-dark"
+                    className="mt-0.5 shrink-0 text-brand-mint"
                   >
                     <path
                       d="M2.5 7.2 5.3 10 11.5 3.5"
@@ -90,7 +96,7 @@ export function PlanPicker({
                 </li>
               ))}
             </ul>
-          </button>
+          </motion.button>
         );
       })}
     </div>

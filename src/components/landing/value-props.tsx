@@ -1,5 +1,6 @@
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
+import { StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 
 const props = [
   {
@@ -60,7 +61,11 @@ const props = [
 
 export function ValueProps() {
   return (
-    <section className="bg-brand-cloud py-20 sm:py-24">
+    <section className="relative bg-surface-1 py-20 sm:py-24">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+      />
       <Container>
         <SectionHeading
           eyebrow="Why Evermore"
@@ -68,26 +73,25 @@ export function ValueProps() {
           description="Evermore was built on a simple idea: a single moment of momentum shouldn't fade. Every feature on the Evermore website is designed to keep you moving forward."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {props.map((prop) => (
-            <div
-              key={prop.title}
-              className="group rounded-3xl border border-black/8 bg-white p-7 shadow-[0_1px_0_rgba(0,0,0,0.02)] transition-all duration-200 hover:-translate-y-1 hover:border-brand-green/30 hover:shadow-[0_20px_40px_-24px_rgba(24,61,142,0.35)]"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue/8 text-brand-blue transition-colors group-hover:bg-brand-green/15 group-hover:text-brand-green-dark">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  {prop.icon}
-                </svg>
+            <StaggerItem key={prop.title}>
+              <div className="glass-card group h-full rounded-3xl p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-green/30 hover:shadow-[0_24px_50px_-24px_rgba(34,197,94,0.35)]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-mint transition-colors group-hover:bg-brand-green/20">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    {prop.icon}
+                  </svg>
+                </div>
+                <h3 className="font-display mt-5 text-lg font-semibold text-white">
+                  {prop.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">
+                  {prop.description}
+                </p>
               </div>
-              <h3 className="font-display mt-5 text-lg font-semibold text-brand-ink">
-                {prop.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-brand-ink/60">
-                {prop.description}
-              </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </Container>
     </section>
   );

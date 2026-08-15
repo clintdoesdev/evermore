@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { SignUpForm } from "@/components/sign-up-form";
+import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
   title: "Sign Up for Evermore",
@@ -39,38 +40,48 @@ export default function SignUpPage() {
         ]}
       />
 
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-surface-0 py-16 sm:py-20">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-          <div className="order-2 lg:order-1">
-            <div className="rounded-3xl border border-black/8 bg-brand-cloud/60 p-7 sm:p-8">
-              <h2 className="font-display text-lg font-semibold text-brand-ink">
+          <Reveal className="order-2 lg:order-1">
+            <div className="glass-card rounded-3xl p-7 sm:p-8">
+              <h2 className="font-display text-lg font-semibold text-white">
                 What you get with Evermore
               </h2>
               <ul className="mt-5 space-y-4">
                 {benefits.map((benefit) => (
-                  <li key={benefit} className="flex items-start gap-3 text-sm text-brand-ink/70">
+                  <li key={benefit} className="flex items-start gap-3 text-sm text-white/70">
                     <CheckIcon />
                     <span>{benefit}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-7 rounded-2xl bg-white p-5 text-sm text-brand-ink/60">
+              <div className="mt-7 rounded-2xl border border-white/8 bg-white/[0.03] p-5 text-sm text-white/60">
                 New to Evermore?{" "}
                 <Link
                   href="/how-to-register"
-                  className="font-semibold text-brand-blue hover:underline"
+                  className="font-semibold text-brand-mint hover:underline"
                 >
                   Read the full registration guide
                 </Link>{" "}
                 for a step-by-step walkthrough.
               </div>
-            </div>
-          </div>
 
-          <div className="order-1 rounded-3xl border border-black/8 p-7 shadow-[0_30px_60px_-30px_rgba(15,23,42,0.25)] sm:p-9 lg:order-2">
-            <SignUpForm />
-          </div>
+              <div className="mt-5 text-sm text-white/60">
+                Already a member?{" "}
+                <Link href="/login" className="font-semibold text-brand-mint hover:underline">
+                  Log in to Evermore
+                </Link>
+                .
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="order-1 lg:order-2">
+            <div className="glass-card rounded-3xl p-7 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] sm:p-9">
+              <SignUpForm />
+            </div>
+          </Reveal>
         </Container>
       </section>
     </>
@@ -79,7 +90,7 @@ export default function SignUpPage() {
 
 function CheckIcon() {
   return (
-    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-green/15 text-brand-green-dark">
+    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-green/15 text-brand-mint">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path
           d="M2 6.2 4.8 9 10 3"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, type FormEvent } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { PlanPicker } from "./plan-picker";
 import { ButtonEl } from "@/components/button";
 import { plans, type Plan } from "@/lib/plans";
@@ -78,92 +79,111 @@ export function PaymentFlow() {
       <PlanPicker selected={planId} onSelect={setPlanId} />
 
       <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr]">
-        <div className="rounded-3xl border border-black/8 bg-white p-7 sm:p-9">
-          {status === "preview" ? (
-            <SuccessPreview plan={plan} onReset={() => setStatus("idle")} />
-          ) : (
-            <form noValidate onSubmit={handleSubmit} className="space-y-5">
-              <h2 className="font-display text-lg font-semibold text-brand-ink">
-                Billing details
-              </h2>
-
-              <Field label="Name on card" htmlFor="fullName" error={errors.fullName}>
-                <input
-                  id="fullName"
-                  autoComplete="cc-name"
-                  value={billing.fullName}
-                  onChange={(e) => update("fullName", e.target.value)}
-                  placeholder="Ada Lovelace"
-                  className={inputClass(Boolean(errors.fullName))}
-                />
-              </Field>
-
-              <Field label="Email address" htmlFor="billingEmail" error={errors.email}>
-                <input
-                  id="billingEmail"
-                  type="email"
-                  autoComplete="email"
-                  value={billing.email}
-                  onChange={(e) => update("email", e.target.value)}
-                  placeholder="you@example.com"
-                  className={inputClass(Boolean(errors.email))}
-                />
-              </Field>
-
-              <Field label="Card number" htmlFor="cardNumber" error={errors.cardNumber}>
-                <input
-                  id="cardNumber"
-                  inputMode="numeric"
-                  autoComplete="cc-number"
-                  value={billing.cardNumber}
-                  onChange={(e) => update("cardNumber", e.target.value)}
-                  placeholder="1234 5678 9012 3456"
-                  className={inputClass(Boolean(errors.cardNumber))}
-                />
-              </Field>
-
-              <div className="grid grid-cols-2 gap-4">
-                <Field label="Expiry" htmlFor="expiry" error={errors.expiry}>
-                  <input
-                    id="expiry"
-                    inputMode="numeric"
-                    autoComplete="cc-exp"
-                    value={billing.expiry}
-                    onChange={(e) => update("expiry", e.target.value)}
-                    placeholder="MM/YY"
-                    className={inputClass(Boolean(errors.expiry))}
-                  />
-                </Field>
-                <Field label="CVC" htmlFor="cvc" error={errors.cvc}>
-                  <input
-                    id="cvc"
-                    inputMode="numeric"
-                    autoComplete="cc-csc"
-                    value={billing.cvc}
-                    onChange={(e) => update("cvc", e.target.value)}
-                    placeholder="123"
-                    className={inputClass(Boolean(errors.cvc))}
-                  />
-                </Field>
-              </div>
-
-              <ButtonEl
-                type="submit"
-                size="lg"
-                className="w-full"
-                disabled={status === "processing"}
+        <div className="glass-card overflow-hidden rounded-3xl p-7 sm:p-9">
+          <AnimatePresence mode="wait">
+            {status === "preview" ? (
+              <motion.div
+                key="preview"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35 }}
               >
-                {status === "processing"
-                  ? "Processing…"
-                  : `Pay ${plan.price}${plan.period} securely`}
-              </ButtonEl>
+                <SuccessPreview plan={plan} onReset={() => setStatus("idle")} />
+              </motion.div>
+            ) : (
+              <motion.form
+                key="form"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                noValidate
+                onSubmit={handleSubmit}
+                className="space-y-5"
+              >
+                <h2 className="font-display text-lg font-semibold text-white">
+                  Billing details
+                </h2>
 
-              <p className="flex items-center justify-center gap-2 text-center text-xs text-brand-ink/45">
-                <LockIcon />
-                Payments are encrypted. Card details never touch our servers.
-              </p>
-            </form>
-          )}
+                <Field label="Name on card" htmlFor="fullName" error={errors.fullName}>
+                  <input
+                    id="fullName"
+                    autoComplete="cc-name"
+                    value={billing.fullName}
+                    onChange={(e) => update("fullName", e.target.value)}
+                    placeholder="Ada Lovelace"
+                    className={inputClass(Boolean(errors.fullName))}
+                  />
+                </Field>
+
+                <Field label="Email address" htmlFor="billingEmail" error={errors.email}>
+                  <input
+                    id="billingEmail"
+                    type="email"
+                    autoComplete="email"
+                    value={billing.email}
+                    onChange={(e) => update("email", e.target.value)}
+                    placeholder="you@example.com"
+                    className={inputClass(Boolean(errors.email))}
+                  />
+                </Field>
+
+                <Field label="Card number" htmlFor="cardNumber" error={errors.cardNumber}>
+                  <input
+                    id="cardNumber"
+                    inputMode="numeric"
+                    autoComplete="cc-number"
+                    value={billing.cardNumber}
+                    onChange={(e) => update("cardNumber", e.target.value)}
+                    placeholder="1234 5678 9012 3456"
+                    className={inputClass(Boolean(errors.cardNumber))}
+                  />
+                </Field>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <Field label="Expiry" htmlFor="expiry" error={errors.expiry}>
+                    <input
+                      id="expiry"
+                      inputMode="numeric"
+                      autoComplete="cc-exp"
+                      value={billing.expiry}
+                      onChange={(e) => update("expiry", e.target.value)}
+                      placeholder="MM/YY"
+                      className={inputClass(Boolean(errors.expiry))}
+                    />
+                  </Field>
+                  <Field label="CVC" htmlFor="cvc" error={errors.cvc}>
+                    <input
+                      id="cvc"
+                      inputMode="numeric"
+                      autoComplete="cc-csc"
+                      value={billing.cvc}
+                      onChange={(e) => update("cvc", e.target.value)}
+                      placeholder="123"
+                      className={inputClass(Boolean(errors.cvc))}
+                    />
+                  </Field>
+                </div>
+
+                <ButtonEl
+                  type="submit"
+                  size="lg"
+                  className="w-full"
+                  disabled={status === "processing"}
+                >
+                  {status === "processing"
+                    ? "Processing…"
+                    : `Pay ${plan.price}${plan.period} securely`}
+                </ButtonEl>
+
+                <p className="flex items-center justify-center gap-2 text-center text-xs text-white/45">
+                  <LockIcon />
+                  Payments are encrypted. Card details never touch our servers.
+                </p>
+              </motion.form>
+            )}
+          </AnimatePresence>
         </div>
 
         <OrderSummary plan={plan} />
@@ -174,7 +194,7 @@ export function PaymentFlow() {
 
 function OrderSummary({ plan }: { plan: Plan }) {
   return (
-    <aside className="h-fit rounded-3xl border border-black/8 bg-brand-navy p-7 text-white sm:p-8">
+    <aside className="glass-card h-fit rounded-3xl p-7 text-white sm:p-8">
       <h2 className="font-display text-lg font-semibold">Order summary</h2>
       <div className="mt-5 flex items-center justify-between border-b border-white/10 pb-5">
         <div>
@@ -192,7 +212,7 @@ function OrderSummary({ plan }: { plan: Plan }) {
           <dd>{plan.price}</dd>
         </div>
         <div className="flex justify-between text-white/60">
-          <dt>Taxes</dt>
+          <dt>VAT</dt>
           <dd>Calculated at checkout</dd>
         </div>
         <div className="flex justify-between border-t border-white/10 pt-3 text-base font-semibold">
@@ -213,7 +233,7 @@ function OrderSummary({ plan }: { plan: Plan }) {
 function SuccessPreview({ plan, onReset }: { plan: Plan; onReset: () => void }) {
   return (
     <div className="flex flex-col items-center gap-4 py-8 text-center">
-      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-green/15 text-brand-green-dark">
+      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-green/15 text-brand-mint">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
           <path
             d="M5 13.5 10.5 19 21 7"
@@ -224,19 +244,19 @@ function SuccessPreview({ plan, onReset }: { plan: Plan; onReset: () => void }) 
           />
         </svg>
       </span>
-      <h2 className="font-display text-xl font-semibold text-brand-ink">
+      <h2 className="font-display text-xl font-semibold text-white">
         Checkout preview complete
       </h2>
-      <p className="max-w-sm text-sm leading-relaxed text-brand-ink/60">
+      <p className="max-w-sm text-sm leading-relaxed text-white/60">
         This is a demo checkout for the {plan.name} plan. Live payment
         processing isn&apos;t connected yet — no card was charged. Once
         billing is enabled, this step will hand off to secure Paystack
-        checkout.
+        checkout in Naira.
       </p>
       <button
         type="button"
         onClick={onReset}
-        className="mt-2 text-sm font-semibold text-brand-blue hover:underline"
+        className="mt-2 text-sm font-semibold text-brand-mint hover:underline"
       >
         Edit billing details
       </button>
@@ -257,18 +277,18 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-medium text-brand-ink">
+      <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-medium text-white/85">
         {label}
       </label>
       {children}
-      {error && <p className="mt-1.5 text-xs font-medium text-red-600">{error}</p>}
+      {error && <p className="mt-1.5 text-xs font-medium text-red-400">{error}</p>}
     </div>
   );
 }
 
 function inputClass(hasError: boolean) {
-  return `w-full rounded-xl border bg-white px-4 py-3 text-sm text-brand-ink placeholder:text-brand-ink/35 outline-none transition-colors focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 ${
-    hasError ? "border-red-400" : "border-black/12"
+  return `glass-input w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors ${
+    hasError ? "border-red-400" : ""
   }`;
 }
 

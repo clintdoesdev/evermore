@@ -2,6 +2,7 @@ export type Plan = {
   id: "monthly" | "annual" | "lifetime";
   name: string;
   price: string;
+  priceValue: number;
   period: string;
   billedAs: string;
   description: string;
@@ -9,11 +10,25 @@ export type Plan = {
   highlighted?: boolean;
 };
 
+export const currency = {
+  code: "NGN",
+  symbol: "₦",
+};
+
+export function formatNaira(value: number) {
+  return new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
 export const plans: Plan[] = [
   {
     id: "monthly",
     name: "Monthly",
-    price: "$19",
+    price: formatNaira(9500),
+    priceValue: 9500,
     period: "/month",
     billedAs: "Billed monthly",
     description: "Flexible access, cancel whenever you like.",
@@ -27,9 +42,10 @@ export const plans: Plan[] = [
   {
     id: "annual",
     name: "Annual",
-    price: "$15",
+    price: formatNaira(7500),
+    priceValue: 7500,
     period: "/month",
-    billedAs: "Billed $180 yearly",
+    billedAs: `Billed ${formatNaira(90000)} yearly`,
     description: "Our most popular plan — save 21% vs monthly.",
     features: [
       "Everything in Monthly",
@@ -42,7 +58,8 @@ export const plans: Plan[] = [
   {
     id: "lifetime",
     name: "Lifetime",
-    price: "$499",
+    price: formatNaira(249000),
+    priceValue: 249000,
     period: " once",
     billedAs: "One-time payment",
     description: "Pay once, keep your Evermore membership forever.",

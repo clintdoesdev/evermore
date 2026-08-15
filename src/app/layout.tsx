@@ -1,22 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { siteConfig } from "@/lib/site-config";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
   display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -83,9 +77,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#071c40",
+  themeColor: "#05070d",
   width: "device-width",
   initialScale: 1,
+  colorScheme: "dark",
 };
 
 const jsonLd = {
@@ -123,9 +118,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${poppins.variable} h-full antialiased dark`}
+      style={{ colorScheme: "dark" }}
+      data-scroll-behavior="smooth"
     >
-      <body className="flex min-h-full flex-col bg-brand-cloud text-brand-ink">
+      <body className="flex min-h-full flex-col bg-surface-0 text-brand-ink">
         <Script
           id="evermore-jsonld"
           type="application/ld+json"

@@ -141,28 +141,28 @@ export function SignUpForm() {
       </Field>
 
       <div>
-        <label className="flex items-start gap-3 text-sm text-brand-ink/70">
+        <label className="flex items-start gap-3 text-sm text-white/70">
           <input
             type="checkbox"
             checked={values.agree}
             onChange={(e) => update("agree", e.target.checked)}
             aria-invalid={Boolean(errors.agree)}
-            className="mt-0.5 h-4 w-4 shrink-0 rounded border-black/20 text-brand-green focus:ring-brand-green"
+            className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/25 bg-white/5 text-brand-green focus:ring-brand-green focus:ring-offset-0"
           />
           <span>
             I agree to Evermore&apos;s{" "}
-            <Link href="/" className="font-semibold text-brand-blue hover:underline">
+            <Link href="/" className="font-semibold text-brand-mint hover:underline">
               Terms of Service
             </Link>{" "}
             and{" "}
-            <Link href="/" className="font-semibold text-brand-blue hover:underline">
+            <Link href="/" className="font-semibold text-brand-mint hover:underline">
               Privacy Policy
             </Link>
             .
           </span>
         </label>
         {errors.agree && (
-          <p className="mt-1.5 text-xs font-medium text-red-600">{errors.agree}</p>
+          <p className="mt-1.5 text-xs font-medium text-red-400">{errors.agree}</p>
         )}
       </div>
 
@@ -170,7 +170,7 @@ export function SignUpForm() {
         {submitting ? "Creating your account…" : "Create Evermore account"}
       </ButtonEl>
 
-      <p className="text-center text-xs text-brand-ink/50">
+      <p className="text-center text-xs text-white/45">
         By registering, your account details stay on this device only —
         no data is sent anywhere yet.
       </p>
@@ -191,17 +191,17 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-medium text-brand-ink">
+      <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-medium text-white/85">
         {label}
       </label>
       {children}
-      {error && <p className="mt-1.5 text-xs font-medium text-red-600">{error}</p>}
+      {error && <p className="mt-1.5 text-xs font-medium text-red-400">{error}</p>}
     </div>
   );
 }
 
 function inputClass(hasError: boolean) {
-  return `w-full rounded-xl border bg-white px-4 py-3 text-sm text-brand-ink placeholder:text-brand-ink/35 outline-none transition-colors focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 ${
-    hasError ? "border-red-400" : "border-black/12"
+  return `glass-input w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors ${
+    hasError ? "border-red-400" : ""
   }`;
 }

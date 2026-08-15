@@ -18,6 +18,7 @@ export const siteConfig = {
   ],
   links: {
     signUp: "/sign-up",
+    login: "/login",
     howToRegister: "/how-to-register",
     payment: "/payment",
     home: "/",

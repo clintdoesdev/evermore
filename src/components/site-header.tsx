@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Logo } from "./logo";
 import { Container } from "./container";
 import { Button } from "./button";
@@ -15,17 +16,33 @@ const navLinks = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 12);
+  });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-navy/95 backdrop-blur supports-[backdrop-filter]:bg-brand-navy/80">
-      <Container className="flex h-16 items-center justify-between sm:h-20">
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+        scrolled
+          ? "border-white/10 bg-surface-0/85 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+          : "border-transparent bg-transparent"
+      }`}
+    >
+      <Container
+        className={`flex items-center justify-between transition-all duration-300 ${
+          scrolled ? "h-16" : "h-20 sm:h-24"
+        }`}
+      >
         <Logo priority />
 
-        <nav
-          aria-label="Primary"
-          className="hidden items-center gap-8 md:flex"
-        >
+        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => {
             const active = pathname === link.href;
             return (
@@ -33,20 +50,21 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`text-sm font-medium transition-colors ${
-                  active
-                    ? "text-brand-mint"
-                    : "text-white/80 hover:text-white"
-                }`}
+                className="group relative text-sm font-medium text-white/75 transition-colors hover:text-white"
               >
                 {link.label}
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-brand-green to-brand-mint transition-transform duration-300 group-hover:scale-x-100 ${
+                    active ? "scale-x-100" : ""
+                  }`}
+                />
               </Link>
             );
           })}
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button href="/sign-up" variant="outline" size="sm">
+          <Button href="/login" variant="outline" size="sm">
             Log In
           </Button>
           <Button href="/sign-up" variant="primary" size="sm">
@@ -59,7 +77,7 @@ export function SiteHeader() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? "Close menu" : "Open menu"}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white md:hidden"
         >
           <span className="sr-only">Toggle navigation</span>
           {open ? (
@@ -75,7 +93,13 @@ export function SiteHeader() {
       </Container>
 
       {open && (
-        <div className="border-t border-white/10 bg-brand-navy md:hidden">
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="overflow-hidden border-t border-white/10 bg-surface-0 md:hidden"
+        >
           <Container className="flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
               <Link
@@ -88,16 +112,16 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="mt-2 flex flex-col gap-3 px-3 pb-2">
-              <Button href="/sign-up" variant="outline" size="sm">
+              <Button href="/login" variant="outline" size="sm" onClick={() => setOpen(false)}>
                 Log In
               </Button>
-              <Button href="/sign-up" variant="primary" size="sm">
+              <Button href="/sign-up" variant="primary" size="sm" onClick={() => setOpen(false)}>
                 Join Evermore
               </Button>
             </div>
           </Container>
-        </div>
+        </motion.div>
       )}
-    </header>
+    </motion.header>
   );
 }

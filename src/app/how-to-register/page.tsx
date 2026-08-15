@@ -5,6 +5,7 @@ import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/button";
 import { FaqAccordion, type FaqItem } from "@/components/faq-accordion";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -136,65 +137,72 @@ export default function HowToRegisterPage() {
         ]}
       />
 
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-surface-0 py-16 sm:py-20">
         <Container className="max-w-3xl">
-          <ol className="space-y-6">
+          <StaggerGroup className="space-y-6">
             {steps.map((step, index) => (
-              <li
-                key={step.title}
-                id={`step-${index + 1}`}
-                className="scroll-mt-24 rounded-3xl border border-black/8 bg-brand-cloud/50 p-6 sm:p-8"
-              >
-                <div className="flex items-start gap-5">
-                  <span className="font-display flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-navy text-base font-semibold text-brand-mint">
-                    {index + 1}
-                  </span>
-                  <div>
-                    <h2 className="font-display text-lg font-semibold text-brand-ink sm:text-xl">
-                      {step.title}
-                    </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-ink/65 sm:text-base">
-                      {step.description}
-                    </p>
+              <StaggerItem key={step.title}>
+                <div
+                  id={`step-${index + 1}`}
+                  className="glass-card scroll-mt-24 rounded-3xl p-6 transition-all duration-300 hover:border-brand-mint/30 sm:p-8"
+                >
+                  <div className="flex items-start gap-5">
+                    <span className="font-display flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-green to-brand-mint text-base font-semibold text-brand-navy">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <h2 className="font-display text-lg font-semibold text-white sm:text-xl">
+                        {step.title}
+                      </h2>
+                      <p className="mt-2 text-sm leading-relaxed text-white/65 sm:text-base">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </li>
+              </StaggerItem>
             ))}
-          </ol>
+          </StaggerGroup>
 
-          <div className="mt-10 flex flex-col items-center gap-4 rounded-3xl border border-brand-green/20 bg-brand-green/5 p-8 text-center">
-            <h2 className="font-display text-xl font-semibold text-brand-ink sm:text-2xl">
-              Ready to create your account?
-            </h2>
-            <p className="max-w-md text-sm text-brand-ink/65 sm:text-base">
-              Start your Evermore registration now — it only takes a
-              couple of minutes.
-            </p>
-            <Button href="/sign-up" size="lg">
-              Go to Sign Up
-            </Button>
-          </div>
+          <Reveal delay={0.1} className="mt-10">
+            <div className="rounded-3xl border border-brand-green/25 bg-brand-green/[0.06] p-8 text-center">
+              <h2 className="font-display text-xl font-semibold text-white sm:text-2xl">
+                Ready to create your account?
+              </h2>
+              <p className="mx-auto mt-2 max-w-md text-sm text-white/65 sm:text-base">
+                Start your Evermore registration now — it only takes a
+                couple of minutes.
+              </p>
+              <Button href="/sign-up" size="lg" className="mt-6">
+                Go to Sign Up
+              </Button>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
-      <section className="bg-brand-cloud py-16 sm:py-20">
+      <section className="relative bg-surface-1 py-16 sm:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+        />
         <Container className="max-w-3xl">
-          <h2 className="font-display text-center text-3xl font-semibold text-balance text-brand-ink sm:text-4xl">
+          <h2 className="font-display text-center text-3xl font-semibold text-balance text-white sm:text-4xl">
             Registration FAQ
           </h2>
-          <p className="mt-4 text-center text-base leading-relaxed text-brand-ink/65 sm:text-lg">
+          <p className="mt-4 text-center text-base leading-relaxed text-white/65 sm:text-lg">
             Answers to common questions about registering on Evermore.
           </p>
-          <div className="mt-12">
+          <Reveal delay={0.1} className="mt-12">
             <FaqAccordion items={registrationFaq} />
-          </div>
-          <p className="mt-8 text-center text-sm text-brand-ink/55">
+          </Reveal>
+          <p className="mt-8 text-center text-sm text-white/50">
             Still have questions? Head back to the{" "}
-            <Link href="/" className="font-semibold text-brand-blue hover:underline">
+            <Link href="/" className="font-semibold text-brand-mint hover:underline">
               Evermore homepage
             </Link>{" "}
             or explore{" "}
-            <Link href="/payment" className="font-semibold text-brand-blue hover:underline">
+            <Link href="/payment" className="font-semibold text-brand-mint hover:underline">
               membership plans
             </Link>
             .
