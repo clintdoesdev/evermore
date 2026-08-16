@@ -1,17 +1,21 @@
--- CreateEnum
-CREATE TYPE "PaymentPlan" AS ENUM ('MONTHLY', 'ANNUAL', 'LIFETIME');
+-- CreateEnum (idempotent: an earlier partial run may have already created this)
+DO $$ BEGIN
+    CREATE TYPE "PaymentPlan" AS ENUM ('MONTHLY', 'ANNUAL', 'LIFETIME');
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;
 
--- AlterTable
-ALTER TABLE "invites" ADD COLUMN     "paymentPlan" "PaymentPlan";
+-- AlterTable (idempotent)
+ALTER TABLE "invites" ADD COLUMN IF NOT EXISTS "paymentPlan" "PaymentPlan";
 
 -- AlterTable: add new member columns nullable first so existing rows survive
-ALTER TABLE "members" ADD COLUMN     "activationDate" TIMESTAMP(3),
-ADD COLUMN     "country" TEXT,
-ADD COLUMN     "customFields" JSONB,
-ADD COLUMN     "loginDetails" TEXT,
-ADD COLUMN     "paymentPlan" "PaymentPlan",
-ADD COLUMN     "phone" TEXT,
-ADD COLUMN     "username" TEXT;
+ALTER TABLE "members" ADD COLUMN IF NOT EXISTS "activationDate" TIMESTAMP(3);
+ALTER TABLE "members" ADD COLUMN IF NOT EXISTS "country" TEXT;
+ALTER TABLE "members" ADD COLUMN IF NOT EXISTS "customFields" JSONB;
+ALTER TABLE "members" ADD COLUMN IF NOT EXISTS "loginDetails" TEXT;
+ALTER TABLE "members" ADD COLUMN IF NOT EXISTS "paymentPlan" "PaymentPlan";
+ALTER TABLE "members" ADD COLUMN IF NOT EXISTS "phone" TEXT;
+ALTER TABLE "members" ADD COLUMN IF NOT EXISTS "username" TEXT;
 
 -- Backfill any pre-existing rows (registered before these fields existed)
 -- with placeholder values, so the NOT NULL constraints below can be applied.
@@ -28,5 +32,5 @@ ALTER TABLE "members" ALTER COLUMN "country" SET NOT NULL;
 ALTER TABLE "members" ALTER COLUMN "phone" SET NOT NULL;
 ALTER TABLE "members" ALTER COLUMN "username" SET NOT NULL;
 
--- CreateIndex
-CREATE UNIQUE INDEX "members_username_key" ON "members"("username");
+-- CreateIndex (idempotent)
+CREATE UNIQUE INDEX IF NOT EXISTS "members_username_key" ON "members"("username");
