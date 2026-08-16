@@ -30,6 +30,8 @@ export const siteConfig = {
     instagram: "https://instagram.com/evermore",
     facebook: "https://facebook.com/evermore",
   },
+  // TODO: replace with the real VIP Telegram group invite link before launch.
+  vipTelegramUrl: "https://t.me/+evermore-vip-placeholder",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

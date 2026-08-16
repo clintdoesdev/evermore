@@ -10,19 +10,19 @@ export function MemberLoginForm() {
   );
 
   return (
-    <form action={action} className="space-y-5">
+    <form action={action} className="space-y-4">
       <div>
-        <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-white/85">
-          Email address
+        <label htmlFor="username" className="mb-1.5 block text-sm font-medium text-white/85">
+          Username
         </label>
         <input
-          id="email"
-          name="email"
-          type="email"
-          autoComplete="email"
+          id="username"
+          name="username"
+          type="text"
+          autoComplete="username"
           required
           className="glass-input w-full rounded-xl px-4 py-3 text-sm outline-none"
-          placeholder="you@example.com"
+          placeholder="your_username"
         />
       </div>
 

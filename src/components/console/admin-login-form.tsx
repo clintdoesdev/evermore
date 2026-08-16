@@ -10,7 +10,7 @@ export function AdminLoginForm() {
   );
 
   return (
-    <form action={action} className="space-y-5">
+    <form action={action} className="space-y-4">
       <div>
         <label htmlFor="username" className="mb-1.5 block text-sm font-medium text-white/85">
           Username

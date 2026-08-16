@@ -17,7 +17,7 @@ export type AdminSessionPayload = {
 export type MemberSessionPayload = {
   role: "member";
   memberId: string;
-  email: string;
+  username: string;
 };
 
 const ADMIN_COOKIE = "evm_admin_session";

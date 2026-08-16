@@ -18,12 +18,21 @@ The proxy rewrites `admin.*` requests to the internal `/admin/*` routes and `das
 
 ### How someone joins
 
-1. Admin logs into `admin.<domain>`, opens **Invites**, and generates a unique invite link (`dashboard.<domain>/join/<token>`).
+1. Admin logs into `admin.<domain>` (username + password), opens **Invites**, and generates a unique invite link (`dashboard.<domain>/join/<token>`) — optionally pre-assigning a payment plan and an expiry.
 2. The admin sends that link to the person directly — there is no public sign-up into the member system.
-3. The invitee opens the link, registers (name/email/password), and lands on their portal dashboard in a **pending** state.
-4. Once the admin confirms payment (manually, in **Members** — there's no live payment processor wired up yet), they mark the member **Active**, and the portal dashboard reflects that on next load.
+3. The invitee opens the link and registers with: full name, username, email, phone number, country, and a password. They land on their portal dashboard in a **pending** state and can log back in later at `dashboard.<domain>/login` with their username/password.
+4. The admin can edit any member's details from **Members** — including setting an **activation date** (shown to the member on their dashboard as "your account will be activated on...") and **login details** (free text shown on the member's dashboard once set, e.g. platform credentials), plus arbitrary custom fields.
+5. When ready, the admin marks the member **Active**. Once active, the portal dashboard shows a **Join VIP Telegram Group** button (the invite link lives in `src/lib/site-config.ts` as `vipTelegramUrl` — replace the placeholder before launch).
 
 Invite links are single-use: once registered, the invite flips to `USED` and the link no longer works.
+
+### Admin capabilities
+
+- Create / revoke invite links, with an optional pre-assigned payment plan and expiry
+- View, edit, and **delete** members (deleting a member also revokes their invite)
+- Manually flip a member between Pending → Active → Suspended (standing in for payment confirmation until a real processor is wired up)
+- Set a member's activation date, login-details text, and free-form custom fields (`Label: Value` per line)
+- Export all member data to CSV from the Members page
 
 ## Marketing pages
 
@@ -81,7 +90,7 @@ The marketing site is at `http://localhost:3000`. To exercise the admin/portal s
 5. **Seed the admin account**: set `ADMIN_SEED_USERNAME` / `ADMIN_SEED_PASSWORD` in the production environment, run `npm run db:seed` once, then remove those two variables from the environment (they're not needed again — the password is stored only as a bcrypt hash in the database).
 6. Update `src/lib/site-config.ts` if the production domain, social links, or contact email change.
 
-**Security note:** the admin password used during local development/testing was shared in plaintext in this conversation. Treat it as compromised and change it (re-run the seed script with a new `ADMIN_SEED_PASSWORD`, or add an "change password" flow) before relying on it in production.
+**Security note:** any admin credentials shared in plaintext during setup (chat, screen share, etc.) should be treated as compromised — rotate them by re-running the seed script with a new `ADMIN_SEED_USERNAME`/`ADMIN_SEED_PASSWORD` and removing the old `AdminUser` row.
 
 ## SEO (marketing site only)
 

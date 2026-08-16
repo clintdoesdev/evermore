@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { adminLogout } from "@/app/admin/actions";
+import { Logo } from "@/components/logo";
+import { DashboardIcon, TicketIcon, UsersIcon, LogOutIcon } from "./icons";
 
 const navItems = [
-  { href: "/", label: "Dashboard" },
-  { href: "/invites", label: "Invites" },
-  { href: "/members", label: "Members" },
+  { href: "/", label: "Dashboard", key: "dashboard", icon: DashboardIcon },
+  { href: "/invites", label: "Invites", key: "invites", icon: TicketIcon },
+  { href: "/members", label: "Members", key: "members", icon: UsersIcon },
 ];
 
 export function AdminShell({
@@ -17,52 +19,66 @@ export function AdminShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-full">
-      <header className="border-b border-white/10 bg-surface-1">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-8">
-            <span className="font-display text-base font-semibold text-white">
-              Evermore <span className="text-brand-mint">Admin</span>
-            </span>
-            <nav className="hidden items-center gap-6 sm:flex">
-              {navItems.map((item) => {
-                const key = item.label.toLowerCase();
-                const isActive = key === active;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`text-sm font-medium transition-colors ${
-                      isActive ? "text-brand-mint" : "text-white/60 hover:text-white"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="hidden text-sm text-white/45 sm:inline">{username}</span>
-            <form action={adminLogout}>
-              <button
-                type="submit"
-                className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold text-white/70 transition-colors hover:border-white/30 hover:text-white"
-              >
-                Log Out
-              </button>
-            </form>
-          </div>
+    <div className="lg:flex lg:min-h-full">
+      <aside className="hidden w-64 shrink-0 flex-col border-r border-white/10 bg-surface-1 lg:flex">
+        <div className="px-6 py-6">
+          <Logo />
         </div>
-        <nav className="flex items-center gap-5 border-t border-white/5 px-6 py-2 sm:hidden">
+        <nav className="flex-1 space-y-1 px-3">
           {navItems.map((item) => {
-            const key = item.label.toLowerCase();
-            const isActive = key === active;
+            const isActive = item.key === active;
+            const Icon = item.icon;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-xs font-semibold ${
+                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-brand-green/10 text-brand-mint"
+                    : "text-white/60 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="border-t border-white/10 p-4">
+          <p className="truncate px-2 text-xs text-white/40">{username}</p>
+          <form action={adminLogout} className="mt-2">
+            <button
+              type="submit"
+              className="flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:bg-white/5 hover:text-white"
+            >
+              <LogOutIcon className="h-4 w-4" />
+              Log Out
+            </button>
+          </form>
+        </div>
+      </aside>
+
+      <div className="flex-1">
+        <header className="flex items-center justify-between border-b border-white/10 bg-surface-1 px-5 py-4 lg:hidden">
+          <Logo />
+          <form action={adminLogout}>
+            <button
+              type="submit"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-white/70"
+            >
+              <LogOutIcon className="h-3.5 w-3.5" />
+              Log Out
+            </button>
+          </form>
+        </header>
+        <nav className="flex items-center gap-5 overflow-x-auto border-b border-white/10 bg-surface-1 px-5 py-2.5 lg:hidden">
+          {navItems.map((item) => {
+            const isActive = item.key === active;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`shrink-0 text-xs font-semibold ${
                   isActive ? "text-brand-mint" : "text-white/55"
                 }`}
               >
@@ -71,8 +87,8 @@ export function AdminShell({
             );
           })}
         </nav>
-      </header>
-      <main className="mx-auto max-w-6xl px-6 py-10">{children}</main>
+        <main className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">{children}</main>
+      </div>
     </div>
   );
 }

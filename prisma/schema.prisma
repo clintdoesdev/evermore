@@ -24,10 +24,17 @@ enum InviteStatus {
   EXPIRED
 }
 
+enum PaymentPlan {
+  MONTHLY
+  ANNUAL
+  LIFETIME
+}
+
 model Invite {
   id          String       @id @default(cuid())
   token       String       @unique
   label       String?
+  paymentPlan PaymentPlan?
   status      InviteStatus @default(PENDING)
   createdAt   DateTime     @default(now())
   expiresAt   DateTime?
@@ -48,15 +55,22 @@ enum MemberStatus {
 }
 
 model Member {
-  id           String       @id @default(cuid())
-  name         String
-  email        String       @unique
-  passwordHash String
-  status       MemberStatus @default(PENDING_PAYMENT)
-  invite       Invite       @relation(fields: [inviteId], references: [id])
-  inviteId     String       @unique
-  createdAt    DateTime     @default(now())
-  activatedAt  DateTime?
+  id             String       @id @default(cuid())
+  name           String
+  username       String       @unique
+  email          String       @unique
+  phone          String
+  country        String
+  passwordHash   String
+  status         MemberStatus @default(PENDING_PAYMENT)
+  paymentPlan    PaymentPlan?
+  activationDate DateTime?
+  loginDetails   String?
+  customFields   Json?
+  invite         Invite       @relation(fields: [inviteId], references: [id])
+  inviteId       String       @unique
+  createdAt      DateTime     @default(now())
+  activatedAt    DateTime?
 
   @@index([status])
   @@map("members")

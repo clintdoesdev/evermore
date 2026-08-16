@@ -6,10 +6,18 @@ import { prisma } from "@/lib/prisma";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { createMemberSession, deleteMemberSession } from "@/lib/auth/session";
 
+const USERNAME_PATTERN = /^[a-zA-Z0-9_.]{3,32}$/;
+
 const RegisterSchema = z.object({
   token: z.string().min(1),
   name: z.string().trim().min(2, "Enter your full name."),
+  username: z
+    .string()
+    .trim()
+    .regex(USERNAME_PATTERN, "Username must be 3-32 characters: letters, numbers, _ or ."),
   email: z.email("Enter a valid email address."),
+  phone: z.string().trim().min(6, "Enter a valid phone number."),
+  country: z.string().trim().min(1, "Select your country."),
   password: z.string().min(8, "Password must be at least 8 characters."),
 });
 
@@ -22,7 +30,10 @@ export async function registerFromInvite(
   const parsed = RegisterSchema.safeParse({
     token: formData.get("token"),
     name: formData.get("name"),
+    username: formData.get("username"),
     email: formData.get("email"),
+    phone: formData.get("phone"),
+    country: formData.get("country"),
     password: formData.get("password"),
   });
 
@@ -30,7 +41,7 @@ export async function registerFromInvite(
     return { error: parsed.error.issues[0]?.message ?? "Check your details and try again." };
   }
 
-  const { token, name, email, password } = parsed.data;
+  const { token, name, username, email, phone, country, password } = parsed.data;
 
   const invite = await prisma.invite.findUnique({ where: { token } });
 
@@ -42,9 +53,15 @@ export async function registerFromInvite(
     return { error: "This invite link has expired." };
   }
 
-  const existing = await prisma.member.findUnique({ where: { email } });
-  if (existing) {
+  const [existingEmail, existingUsername] = await Promise.all([
+    prisma.member.findUnique({ where: { email } }),
+    prisma.member.findUnique({ where: { username } }),
+  ]);
+  if (existingEmail) {
     return { error: "An account with this email already exists. Try logging in instead." };
+  }
+  if (existingUsername) {
+    return { error: "That username is already taken. Choose another." };
   }
 
   const passwordHash = await hashPassword(password);
@@ -53,9 +70,13 @@ export async function registerFromInvite(
     const created = await tx.member.create({
       data: {
         name,
+        username,
         email,
+        phone,
+        country,
         passwordHash,
         status: "PENDING_PAYMENT",
+        paymentPlan: invite.paymentPlan ?? undefined,
         inviteId: invite.id,
       },
     });
@@ -66,12 +87,12 @@ export async function registerFromInvite(
     return created;
   });
 
-  await createMemberSession({ memberId: member.id, email: member.email });
+  await createMemberSession({ memberId: member.id, username: member.username });
   redirect("/dashboard");
 }
 
 const LoginSchema = z.object({
-  email: z.email("Enter a valid email address."),
+  username: z.string().trim().min(1, "Enter your username."),
   password: z.string().min(1, "Enter your password."),
 });
 
@@ -82,25 +103,25 @@ export async function memberLogin(
   formData: FormData,
 ): Promise<MemberLoginState> {
   const parsed = LoginSchema.safeParse({
-    email: formData.get("email"),
+    username: formData.get("username"),
     password: formData.get("password"),
   });
 
   if (!parsed.success) {
-    return { error: "Enter a valid email and password." };
+    return { error: "Enter your username and password." };
   }
 
-  const member = await prisma.member.findUnique({ where: { email: parsed.data.email } });
+  const member = await prisma.member.findUnique({ where: { username: parsed.data.username } });
   if (!member) {
-    return { error: "Invalid email or password." };
+    return { error: "Invalid username or password." };
   }
 
   const valid = await verifyPassword(parsed.data.password, member.passwordHash);
   if (!valid) {
-    return { error: "Invalid email or password." };
+    return { error: "Invalid username or password." };
   }
 
-  await createMemberSession({ memberId: member.id, email: member.email });
+  await createMemberSession({ memberId: member.id, username: member.username });
   redirect("/dashboard");
 }
 
