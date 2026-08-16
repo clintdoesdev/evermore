@@ -7,7 +7,6 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Logo } from "./logo";
 import { Container } from "./container";
 import { Button } from "./button";
-import { portalUrl } from "@/lib/site-config";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -65,9 +64,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button href={portalUrl("/login")} variant="outline" size="sm">
-            Log In
-          </Button>
           <Button href="/sign-up" variant="primary" size="sm">
             Join Evermore
           </Button>
@@ -113,9 +109,6 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="mt-2 flex flex-col gap-3 px-3 pb-2">
-              <Button href={portalUrl("/login")} variant="outline" size="sm" onClick={() => setOpen(false)}>
-                Log In
-              </Button>
               <Button href="/sign-up" variant="primary" size="sm" onClick={() => setOpen(false)}>
                 Join Evermore
               </Button>

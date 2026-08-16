@@ -66,14 +66,6 @@ export default function SignUpPage() {
                 </Link>{" "}
                 for a step-by-step walkthrough.
               </div>
-
-              <div className="mt-5 text-sm text-white/60">
-                Already a member?{" "}
-                <Link href="/login" className="font-semibold text-brand-mint hover:underline">
-                  Log in to Evermore
-                </Link>
-                .
-              </div>
             </div>
           </Reveal>
 
