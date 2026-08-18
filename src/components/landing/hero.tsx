@@ -50,25 +50,24 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-green" />
             </span>
-            The Official Evermore Website
+            Home of EverAI
           </motion.span>
 
           <motion.h1
             variants={item}
             className="font-display mt-6 text-4xl font-semibold leading-[1.08] text-balance sm:text-5xl lg:text-6xl"
           >
-            <span className="text-gradient">Evermore</span> — Exist Beyond
-            the Moment
+            Get Paid to Help Train <span className="text-gradient">EverAI</span>
           </motion.h1>
 
           <motion.p
             variants={item}
             className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
           >
-            Evermore is the membership platform built for people who refuse
-            to plateau. Register in minutes, unlock your dashboard, and turn
-            every moment into momentum — ever more growth, ever more access,
-            ever more you.
+            Evermore is the ecosystem behind EverAI, our Generative AI
+            assistant. Join to earn hourly rewards training EverAI, unlock
+            global remote job alerts, get a personal mentor from day one, and
+            learn income-generating skills at Evermore Academy.
           </motion.p>
 
           <motion.div
@@ -76,7 +75,7 @@ export function Hero() {
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Button href="/sign-up" size="lg">
-              Join Evermore
+              Join Evermore Now
               <ArrowIcon />
             </Button>
             <Button href="/how-to-register" variant="outline" size="lg">
@@ -89,9 +88,9 @@ export function Hero() {
             className="mt-12 grid grid-cols-3 gap-6 border-t border-white/10 pt-8"
           >
             {[
-              ["Simple", "Registration"],
-              ["Secure", "Checkout"],
-              ["Anytime", "Cancellation"],
+              ["Up to $18.60", "Per Hour, Remote"],
+              ["Free", "Predictions & Prizes"],
+              ["1-on-1", "Personal Mentor"],
             ].map(([kicker, label]) => (
               <div key={label}>
                 <dt className="font-display text-lg font-semibold text-brand-mint sm:text-xl">
@@ -122,7 +121,7 @@ export function Hero() {
           >
             <Image
               src={heroPoster}
-              alt="Evermore member holding the glowing Evermore infinity mark, representing the Evermore membership experience"
+              alt="Evermore member holding the glowing Evermore infinity mark, representing the EverAI training and rewards ecosystem"
               priority
               placeholder="blur"
               sizes="(min-width: 1024px) 480px, (min-width: 640px) 420px, 90vw"
@@ -136,7 +135,7 @@ export function Hero() {
         <div className="animate-marquee flex w-max gap-16 whitespace-nowrap text-sm font-medium uppercase tracking-[0.2em] text-white/35">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex items-center gap-16">
-              {["Ever Growing", "Ever Accessible", "Ever Secure", "Ever More Community", "Exist Beyond the Moment"].map(
+              {["Train EverAI & Earn", "Remote Job Alerts", "Personal Mentorship", "Free Predictions", "Evermore Academy", "Turning Possibilities Into Experiences"].map(
                 (word) => (
                   <span key={word} className="flex items-center gap-16">
                     {word}

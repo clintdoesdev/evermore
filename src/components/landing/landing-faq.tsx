@@ -8,17 +8,27 @@ export const landingFaqItems: FaqItem[] = [
   {
     question: "What is Evermore?",
     answer:
-      "Evermore is a membership platform designed to help you keep growing beyond a single moment. Once you register on the Evermore website, you get access to your member dashboard, tools, and everything included in your plan.",
+      "Evermore is a technology-driven ecosystem built around EverAI, our Generative AI assistant. Members get paid to help train EverAI, plus get access to remote job alerts, personal mentorship, free prediction games, and Evermore Academy.",
   },
   {
-    question: "Is this the official Evermore website?",
+    question: "What is EverAI?",
     answer:
-      "Yes. This is the official Evermore website, home to the landing page, registration guide, sign up form, and membership plans.",
+      "EverAI is Evermore's flagship AI assistant — a Generative AI system built to understand prompts and generate intelligent, human-like responses. Like any advanced AI, it improves through real human feedback, which is where members come in.",
   },
   {
-    question: "How do I register on Evermore?",
+    question: "How do I get paid to train EverAI?",
     answer:
-      "Go to the Sign Up page, enter your name, email, and password, then submit the form. For a full walkthrough with screenshots and tips, visit our How to Register page.",
+      "After you register, you'll get access to simple training tasks — helping EverAI understand prompts, correcting responses, and improving its language comprehension. Evermore rewards members hourly based on the quality and quantity of completed tasks.",
+  },
+  {
+    question: "What remote job opportunities does Evermore offer?",
+    answer:
+      "EverAI automatically sources and filters remote work from around the world and notifies you when a suitable role opens up. Many roles pay up to $18.60/hour and require little or no prior experience.",
+  },
+  {
+    question: "Do I get a mentor when I join?",
+    answer:
+      "Yes. Every subscriber is assigned a personal mentor immediately after joining, who helps you navigate AI training tasks, remote jobs, predictions, and every other feature on Evermore.",
   },
   {
     question: "How much does Evermore membership cost?",
@@ -57,7 +67,7 @@ export function LandingFaq() {
         <SectionHeading
           eyebrow="FAQ"
           title="Evermore, answered"
-          description="Common questions about the Evermore website, registration, and membership."
+          description="Common questions about Evermore, EverAI, and how the earning ecosystem works."
         />
         <Reveal delay={0.1} className="mt-12">
           <FaqAccordion items={landingFaqItems} />

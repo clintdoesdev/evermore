@@ -79,7 +79,7 @@ export default function PaymentPage() {
       <PageHeader
         eyebrow="Membership & Payment"
         title="Choose your Evermore membership"
-        description="Compare plans, pick what fits, and complete checkout below. All prices are in Naira (₦). Secure Paystack payment processing is being finalized — this page shows exactly how checkout will work."
+        description="Compare plans, pick what fits, and complete checkout below to unlock EverAI training rewards, remote jobs, mentorship, predictions, and Evermore Academy. All prices are in Naira (₦). Secure Paystack payment processing is being finalized — this page shows exactly how checkout will work."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Membership", href: "/payment" },

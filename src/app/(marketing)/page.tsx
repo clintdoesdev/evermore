@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/landing/hero";
+import { EverAiIntro } from "@/components/landing/everai-intro";
 import { ValueProps } from "@/components/landing/value-props";
 import { HowItWorksTeaser } from "@/components/landing/how-it-works-teaser";
 import { MembershipTeaser } from "@/components/landing/membership-teaser";
@@ -8,16 +9,16 @@ import { LandingFaq } from "@/components/landing/landing-faq";
 import { FinalCta } from "@/components/landing/final-cta";
 
 export const metadata: Metadata = {
-  title: "Evermore Website | Exist Beyond the Moment",
+  title: "Evermore | Get Paid to Train EverAI, Remote Jobs & Mentorship",
   description:
-    "Welcome to the official Evermore website. Discover what Evermore is, explore membership plans, and join the platform built to help you exist beyond the moment.",
+    "Join Evermore and get paid to help train EverAI, our Generative AI assistant. Unlock global remote jobs, a personal mentor, free prediction games, and Evermore Academy skills training.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Evermore Website | Exist Beyond the Moment",
+    title: "Evermore | Get Paid to Train EverAI, Remote Jobs & Mentorship",
     description:
-      "Welcome to the official Evermore website. Discover what Evermore is, explore membership plans, and join the platform built to help you exist beyond the moment.",
+      "Join Evermore and get paid to help train EverAI, our Generative AI assistant. Unlock global remote jobs, a personal mentor, free prediction games, and Evermore Academy skills training.",
     url: "/",
   },
 };
@@ -26,6 +27,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <EverAiIntro />
       <ValueProps />
       <HowItWorksTeaser />
       <MembershipTeaser />

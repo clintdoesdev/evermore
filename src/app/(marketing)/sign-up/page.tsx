@@ -21,10 +21,10 @@ export const metadata: Metadata = {
 };
 
 const benefits = [
-  "Instant access to your Evermore member dashboard",
-  "Flexible monthly, annual, or lifetime plans",
-  "Cancel or change your plan anytime",
-  "Secure, straightforward checkout",
+  "Earn hourly rewards training EverAI",
+  "Global remote job alerts, up to $18.60/hour",
+  "A personal mentor from day one",
+  "Free predictions and Evermore Academy access",
 ];
 
 export default function SignUpPage() {
@@ -47,6 +47,10 @@ export default function SignUpPage() {
               <h2 className="font-display text-lg font-semibold text-white">
                 What you get with Evermore
               </h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/60">
+                Everything you need to earn training EverAI and beyond, in
+                one membership.
+              </p>
               <ul className="mt-5 space-y-4">
                 {benefits.map((benefit) => (
                   <li key={benefit} className="flex items-start gap-3 text-sm text-white/70">

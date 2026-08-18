@@ -16,17 +16,17 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Evermore Website | Exist Beyond the Moment",
+    default: "Evermore | Get Paid to Train EverAI, Remote Jobs & Mentorship",
     template: "%s | Evermore",
   },
   description:
-    "The official Evermore website. Discover what Evermore is, how to register, and how to join a membership built to help you exist beyond the moment.",
+    "Evermore is the technology ecosystem behind EverAI. Get paid to help train our AI, unlock global remote job alerts, get a personal mentor from day one, join free prediction games, and learn income-generating skills at Evermore Academy.",
   keywords: [...siteConfig.keywords],
   applicationName: siteConfig.name,
   authors: [{ name: "Evermore" }],
   creator: "Evermore",
   publisher: "Evermore",
-  category: "Membership Platform",
+  category: "Artificial Intelligence",
   alternates: {
     canonical: "/",
   },
@@ -35,20 +35,20 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Evermore Website | Exist Beyond the Moment",
+    title: "Evermore | Get Paid to Train EverAI, Remote Jobs & Mentorship",
     description: siteConfig.description,
     images: [
       {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Evermore — Exist Beyond the Moment",
+        alt: "Evermore — Turning Possibilities Into Experiences",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Evermore | Exist Beyond the Moment",
+    title: "Evermore | Turning Possibilities Into Experiences",
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
@@ -92,6 +92,8 @@ const jsonLd = {
       name: "Evermore",
       url: siteConfig.url,
       logo: `${siteConfig.url}/images/icon-512.png`,
+      description:
+        "Evermore is a technology-driven company building EverAI, a Generative AI assistant, and a rewards ecosystem where people get paid to train it.",
       sameAs: [
         siteConfig.social.twitter,
         siteConfig.social.instagram,

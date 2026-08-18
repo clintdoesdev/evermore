@@ -5,23 +5,23 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 const testimonials = [
   {
     quote:
-      "Registering on Evermore took less time than making coffee. The dashboard is clean and I actually use it every day.",
+      "I started out just training EverAI in my spare time and it turned into real hourly income. My mentor checked in from day one, which made the whole thing click faster.",
     name: "Amara O.",
-    role: "Evermore member",
+    role: "EverAI trainer",
     initials: "AO",
   },
   {
     quote:
-      "I read the how-to-register guide, signed up, and picked the annual plan in one sitting. Genuinely the smoothest onboarding I've used.",
+      "The remote job alerts alone were worth signing up for — I didn't have to search five different sites anymore. Evermore just sent them to me.",
     name: "Daniel K.",
     role: "Evermore member",
     initials: "DK",
   },
   {
     quote:
-      "What sold me was how transparent the membership page is — plans, pricing, everything laid out before I paid a cent.",
+      "I joined for the AI training rewards and stayed for Evermore Academy. Learning copywriting alongside earning money completely changed my routine.",
     name: "Priya S.",
-    role: "Evermore member",
+    role: "Evermore Academy student",
     initials: "PS",
   },
 ];
@@ -36,7 +36,7 @@ export function Testimonials() {
       <Container>
         <SectionHeading
           eyebrow="Member Voices"
-          title="People who registered on Evermore"
+          title="People earning with Evermore"
         />
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -12,9 +12,9 @@ const steps = [
   },
   {
     number: "02",
-    title: "Confirm your details",
+    title: "Get matched with a mentor",
     description:
-      "Double-check your information, agree to the terms, and submit your Evermore registration.",
+      "As soon as you're in, a personal mentor is assigned to guide you through EverAI training, jobs, and every earning opportunity.",
   },
   {
     number: "03",
@@ -24,9 +24,9 @@ const steps = [
   },
   {
     number: "04",
-    title: "Exist beyond the moment",
+    title: "Start earning with EverAI",
     description:
-      "You're in. Log in anytime to access your Evermore dashboard and everything your membership unlocks.",
+      "Log in anytime to train EverAI, browse remote job alerts, join predictions, and access Evermore Academy from your dashboard.",
   },
 ];
 
@@ -40,7 +40,7 @@ export function HowItWorksTeaser() {
               eyebrow="Getting Started"
               title="How to register on Evermore"
               align="left"
-              description="Creating an Evermore account takes less than five minutes. Here's exactly what happens when you register."
+              description="Creating an Evermore account takes less than five minutes — and puts you on the path to earning with EverAI. Here's exactly what happens when you register."
             />
             <Reveal delay={0.15} className="mt-8">
               <Button href="/how-to-register" variant="secondary">

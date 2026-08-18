@@ -130,7 +130,7 @@ export default function HowToRegisterPage() {
       <PageHeader
         eyebrow="Registration Guide"
         title="How to Register on Evermore"
-        description="Follow these six simple steps to create your Evermore account and start your membership — most people finish in under three minutes."
+        description="Follow these six simple steps to create your Evermore account and start earning with EverAI — most people finish in under three minutes."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "How to Register", href: "/how-to-register" },

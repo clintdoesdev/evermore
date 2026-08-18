@@ -4,9 +4,9 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 
 const props = [
   {
-    title: "Ever Growing",
+    title: "Train EverAI & Earn",
     description:
-      "Evermore membership is built around continuous progress — tools, drops, and resources that evolve with you instead of expiring after one moment.",
+      "Help EverAI understand prompts, correct responses, and improve language comprehension. Every completed training task earns you hourly rewards.",
     icon: (
       <path
         d="M4 20V10m8 10V4m8 16v-7"
@@ -17,9 +17,9 @@ const props = [
     ),
   },
   {
-    title: "Ever Accessible",
+    title: "Global Remote Jobs",
     description:
-      "Your Evermore account travels with you. Register once and access your membership from any device, anywhere, anytime.",
+      "EverAI sources and filters remote work from around the world for you. Many roles pay up to $18.60/hour and need no prior experience.",
     icon: (
       <>
         <rect x="5" y="3" width="14" height="18" rx="3" stroke="currentColor" strokeWidth="1.8" />
@@ -28,9 +28,9 @@ const props = [
     ),
   },
   {
-    title: "Ever Secure",
+    title: "Personal Mentorship",
     description:
-      "From sign up to checkout, every step of the Evermore experience is designed with clear, transparent, and secure flows.",
+      "Every subscriber is assigned a personal mentor immediately after joining — guiding you through every feature and earning opportunity.",
     icon: (
       <path
         d="M12 3l7 3v6c0 4.6-3 7.9-7 9-4-1.1-7-4.4-7-9V6l7-3Z"
@@ -41,9 +41,33 @@ const props = [
     ),
   },
   {
+    title: "Predictions & Rewards",
+    description:
+      "Make free predictions on trending reality TV, sports, and major events for a chance to win real prizes — while staying part of the conversation.",
+    icon: (
+      <>
+        <path d="M5 20h14M7 20V11l5-6 5 6v9" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        <path d="M10 20v-5h4v5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      </>
+    ),
+  },
+  {
+    title: "Evermore Academy",
+    description:
+      "Learn Financial Market Trading, AI Automation, Copywriting, and Content Creation from experienced professionals — and earn certifications that stick.",
+    icon: (
+      <path
+        d="M2 8l10-4 10 4-10 4-10-4Zm4 2.4V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.6"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    ),
+  },
+  {
     title: "Ever More Community",
     description:
-      "Join a growing circle of Evermore members exchanging wins, resources, and momentum — together, beyond the moment.",
+      "Join a growing circle of Evermore members exchanging wins, strategies, and momentum — together, beyond the moment.",
     icon: (
       <>
         <circle cx="8" cy="9" r="3" stroke="currentColor" strokeWidth="1.8" />
@@ -68,12 +92,12 @@ export function ValueProps() {
       />
       <Container>
         <SectionHeading
-          eyebrow="Why Evermore"
-          title="One membership. Ever more ways to grow."
-          description="Evermore was built on a simple idea: a single moment of momentum shouldn't fade. Every feature on the Evermore website is designed to keep you moving forward."
+          eyebrow="The Evermore Ecosystem"
+          title="One membership. Ever more ways to earn."
+          description="Evermore combines Artificial Intelligence, remote work, education, mentorship, and rewards into one ecosystem — everything you need to learn, earn, and grow."
         />
 
-        <StaggerGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {props.map((prop) => (
             <StaggerItem key={prop.title}>
               <div className="glass-card group h-full rounded-3xl p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-green/30 hover:shadow-[0_24px_50px_-24px_rgba(34,197,94,0.35)]">

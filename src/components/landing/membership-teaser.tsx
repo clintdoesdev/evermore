@@ -17,9 +17,11 @@ export function MembershipTeaser() {
               Plans built to grow with you
             </h2>
             <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
-              Every Evermore plan unlocks the full platform. Pay monthly,
-              save with annual billing, or go lifetime — cancel or change
-              anytime from your dashboard. All prices in Nigerian Naira.
+              Every Evermore plan unlocks EverAI training tasks, remote job
+              alerts, your personal mentor, prediction games, and Evermore
+              Academy. Pay monthly, save with annual billing, or go lifetime
+              — cancel or change anytime from your dashboard. All prices in
+              Nigerian Naira.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/payment" size="lg">
