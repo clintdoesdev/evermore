@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/landing/hero";
 import { EverAiIntro } from "@/components/landing/everai-intro";
+import { CampaignCarousel } from "@/components/landing/campaign-carousel";
 import { ValueProps } from "@/components/landing/value-props";
 import { HowItWorksTeaser } from "@/components/landing/how-it-works-teaser";
 import { MembershipTeaser } from "@/components/landing/membership-teaser";
@@ -28,6 +29,7 @@ export default function Home() {
     <>
       <Hero />
       <EverAiIntro />
+      <CampaignCarousel />
       <ValueProps />
       <HowItWorksTeaser />
       <MembershipTeaser />
