@@ -8,6 +8,8 @@ const columns = [
     title: "Evermore",
     links: [
       { href: "/", label: "Landing Page" },
+      { href: "/evermore-platform", label: "The Evermore Platform" },
+      { href: "/evermore-app", label: "The Evermore App" },
       { href: "/how-to-register", label: "How to Register" },
       { href: "/sign-up", label: "Sign Up" },
       { href: "/payment", label: "Membership Plans" },

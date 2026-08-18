@@ -10,6 +10,7 @@ import { SectionHeading } from "@/components/section-heading";
 type Campaign = {
   id: string;
   image: string;
+  alt: string;
   eyebrow: string;
   title: string;
   description: string;
@@ -21,6 +22,7 @@ const campaigns: Campaign[] = [
   {
     id: "everai-trainers",
     image: "/images/campaigns/everai-trainers.jpg",
+    alt: "Evermore AI trainer standing beside the EverAI robot assistant — join Evermore as an AI trainer and get paid to train EverAI",
     eyebrow: "AI Trainers Wanted",
     title: "Africa, Meet EverAI",
     description:
@@ -31,6 +33,7 @@ const campaigns: Campaign[] = [
   {
     id: "mentorship",
     image: "/images/campaigns/mentorship.jpg",
+    alt: "An Evermore member with her personal mentor — every Evermore member gets a personal mentor assigned immediately after signing up",
     eyebrow: "From Day One",
     title: "A Personal Mentor, Instantly",
     description:
@@ -41,6 +44,7 @@ const campaigns: Campaign[] = [
   {
     id: "remote-jobs",
     image: "/images/campaigns/remote-jobs.jpg",
+    alt: "EverAI Does More — earn up to $18.60 per hour on remote jobs sourced by EverAI, no experience needed",
     eyebrow: "EverAI Does More",
     title: "Earn Up to $18.60/Hour",
     description:
@@ -51,6 +55,7 @@ const campaigns: Campaign[] = [
   {
     id: "predictions",
     image: "/images/campaigns/predictions.jpg",
+    alt: "Evermore free prediction game on trending reality TV eviction — make free predictions and get rewarded on Evermore",
     eyebrow: "Predictions & Rewards",
     title: "Who Will Leave Next?",
     description:
@@ -61,6 +66,7 @@ const campaigns: Campaign[] = [
   {
     id: "academy",
     image: "/images/campaigns/academy.jpg",
+    alt: "Evermore Academy graduate holding a graduation cap and camera — master high-income skills like AI automation and copywriting",
     eyebrow: "Evermore Academy",
     title: "Master High-Income Skills",
     description:
@@ -71,6 +77,7 @@ const campaigns: Campaign[] = [
   {
     id: "essence",
     image: "/images/campaigns/the-essence.jpg",
+    alt: "The Essence of Evermore — connecting imagination to reality and turning possibilities into experiences",
     eyebrow: "The Essence",
     title: "Turning Possibilities Into Experiences",
     description:
@@ -181,7 +188,7 @@ export function CampaignCarousel() {
             >
               <Image
                 src={campaign.image}
-                alt={campaign.title}
+                alt={campaign.alt}
                 fill
                 sizes="(min-width: 640px) 290px, 260px"
                 className="object-cover"

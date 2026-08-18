@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Evermore — Exist Beyond the Moment",
+    name: "Evermore — Get Paid to Train EverAI",
     short_name: "Evermore",
     description: siteConfig.description,
     start_url: "/",

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Script from "next/script";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
@@ -71,6 +72,19 @@ export function LandingFaq() {
         />
         <Reveal delay={0.1} className="mt-12">
           <FaqAccordion items={landingFaqItems} />
+        </Reveal>
+        <Reveal delay={0.15} className="mt-8">
+          <p className="text-center text-sm text-white/50">
+            Want the full picture? Explore{" "}
+            <Link href="/evermore-platform" className="font-semibold text-brand-mint hover:underline">
+              the Evermore platform
+            </Link>{" "}
+            or install{" "}
+            <Link href="/evermore-app" className="font-semibold text-brand-mint hover:underline">
+              the Evermore app
+            </Link>
+            .
+          </p>
         </Reveal>
       </Container>
     </section>

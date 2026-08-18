@@ -21,6 +21,8 @@ export const siteConfig = {
     "Evermore sign up",
     "Evermore login",
     "Evermore platform",
+    "Evermore app",
+    "Evermore app download",
   ],
   links: {
     signUp: "/sign-up",
