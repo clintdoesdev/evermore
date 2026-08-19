@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import { Container } from "@/components/container";
-import { PageHeader } from "@/components/page-header";
+import { RegisterHero } from "@/components/landing/register-hero";
 import { Button } from "@/components/button";
 import { FaqAccordion, type FaqItem } from "@/components/faq-accordion";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
@@ -127,7 +127,7 @@ export default function HowToRegisterPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <PageHeader
+      <RegisterHero
         eyebrow="Registration Guide"
         title="How to Register on Evermore"
         description="Follow these six simple steps to create your Evermore account and start earning with EverAI — most people finish in under three minutes."
