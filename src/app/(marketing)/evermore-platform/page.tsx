@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { Container } from "@/components/container";
-import { PageHeader } from "@/components/page-header";
+import { PlatformHero } from "@/components/landing/platform-hero";
 import { Button } from "@/components/button";
 import { FaqAccordion, type FaqItem } from "@/components/faq-accordion";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
@@ -149,7 +149,7 @@ export default function EvermorePlatformPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <PageHeader
+      <PlatformHero
         eyebrow="The Evermore Platform"
         title="The Evermore Platform: One Account, Ever More Ways to Earn"
         description="The Evermore platform brings EverAI training rewards, remote job alerts, personal mentorship, predictions, and Evermore Academy together in one place."
@@ -182,7 +182,7 @@ export default function EvermorePlatformPage() {
         </Container>
       </section>
 
-      <section className="relative bg-surface-1 py-16 sm:py-20">
+      <section id="platform-features" className="relative scroll-mt-28 bg-surface-1 py-16 sm:py-20">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
