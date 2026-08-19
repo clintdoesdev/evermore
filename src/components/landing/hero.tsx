@@ -50,24 +50,26 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-green" />
             </span>
-            Home of EverAI
+            The Official Evermore Website
           </motion.span>
 
           <motion.h1
             variants={item}
             className="font-display mt-6 text-4xl font-semibold leading-[1.08] text-balance sm:text-5xl lg:text-6xl"
           >
-            Get Paid to Help Train <span className="text-gradient">EverAI</span>
+            <span className="text-gradient">Evermore Website</span> — Get Paid
+            to Help Train EverAI
           </motion.h1>
 
           <motion.p
             variants={item}
             className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
           >
-            Evermore is the ecosystem behind EverAI, our Generative AI
-            assistant. Join to earn hourly rewards training EverAI, unlock
-            global remote job alerts, get a personal mentor from day one, and
-            learn income-generating skills at Evermore Academy.
+            Welcome to the official Evermore website — home of EverAI, our
+            Generative AI assistant. Join to earn hourly rewards training
+            EverAI, unlock global remote job alerts, get a personal mentor
+            from day one, and learn income-generating skills at Evermore
+            Academy.
           </motion.p>
 
           <motion.div
@@ -135,7 +137,7 @@ export function Hero() {
         <div className="animate-marquee flex w-max gap-16 whitespace-nowrap text-sm font-medium uppercase tracking-[0.2em] text-white/35">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex items-center gap-16">
-              {["Train EverAI & Earn", "Remote Job Alerts", "Personal Mentorship", "Free Predictions", "Evermore Academy", "Turning Possibilities Into Experiences"].map(
+              {["The Official Evermore Website", "Train EverAI & Earn", "Remote Job Alerts", "Personal Mentorship", "Free Predictions", "Evermore Academy"].map(
                 (word) => (
                   <span key={word} className="flex items-center gap-16">
                     {word}

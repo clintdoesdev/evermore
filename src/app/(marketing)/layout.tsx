@@ -16,11 +16,11 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Evermore | Get Paid to Train EverAI, Remote Jobs & Mentorship",
-    template: "%s | Evermore",
+    default: "Evermore Website | Official Home of EverAI & Rewards",
+    template: "%s | Evermore Website",
   },
   description:
-    "Evermore is the technology ecosystem behind EverAI. Get paid to help train our AI, unlock global remote job alerts, get a personal mentor from day one, join free prediction games, and learn income-generating skills at Evermore Academy.",
+    "The official Evermore website — home of EverAI. Get paid to help train our AI, unlock global remote job alerts, get a personal mentor from day one, join free prediction games, and learn income-generating skills at Evermore Academy.",
   keywords: [...siteConfig.keywords],
   applicationName: siteConfig.name,
   authors: [{ name: "Evermore" }],
@@ -35,20 +35,20 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Evermore | Get Paid to Train EverAI, Remote Jobs & Mentorship",
+    title: "Evermore Website | Official Home of EverAI & Rewards",
     description: siteConfig.description,
     images: [
       {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Evermore — Turning Possibilities Into Experiences",
+        alt: "Evermore Website — Turning Possibilities Into Experiences",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Evermore | Turning Possibilities Into Experiences",
+    title: "Evermore Website | Official Home of EverAI & Rewards",
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
@@ -104,7 +104,8 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${siteConfig.url}/#website`,
       url: siteConfig.url,
-      name: "Evermore",
+      name: "Evermore Website",
+      alternateName: "Evermore",
       description: siteConfig.description,
       publisher: { "@id": `${siteConfig.url}/#organization` },
       potentialAction: {

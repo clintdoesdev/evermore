@@ -12,6 +12,11 @@ export const landingFaqItems: FaqItem[] = [
       "Evermore is a technology-driven ecosystem built around EverAI, our Generative AI assistant. Members get paid to help train EverAI, plus get access to remote job alerts, personal mentorship, free prediction games, and Evermore Academy.",
   },
   {
+    question: "Is this the official Evermore website?",
+    answer:
+      "Yes. This is the official Evermore website — home to EverAI, membership plans, registration, and everything else Evermore offers.",
+  },
+  {
     question: "What is EverAI?",
     answer:
       "EverAI is Evermore's flagship AI assistant — a Generative AI system built to understand prompts and generate intelligent, human-like responses. Like any advanced AI, it improves through real human feedback, which is where members come in.",

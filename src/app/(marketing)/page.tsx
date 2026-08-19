@@ -10,16 +10,16 @@ import { LandingFaq } from "@/components/landing/landing-faq";
 import { FinalCta } from "@/components/landing/final-cta";
 
 export const metadata: Metadata = {
-  title: "Evermore | Get Paid to Train EverAI, Remote Jobs & Mentorship",
+  title: "Evermore Website | Official Home of EverAI & Rewards",
   description:
-    "Join Evermore and get paid to help train EverAI, our Generative AI assistant. Unlock global remote jobs, a personal mentor, free prediction games, and Evermore Academy skills training.",
+    "Welcome to the official Evermore website. Get paid to help train EverAI, our Generative AI assistant, unlock global remote jobs, a personal mentor, free prediction games, and Evermore Academy skills training.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Evermore | Get Paid to Train EverAI, Remote Jobs & Mentorship",
+    title: "Evermore Website | Official Home of EverAI & Rewards",
     description:
-      "Join Evermore and get paid to help train EverAI, our Generative AI assistant. Unlock global remote jobs, a personal mentor, free prediction games, and Evermore Academy skills training.",
+      "Welcome to the official Evermore website. Get paid to help train EverAI, our Generative AI assistant, unlock global remote jobs, a personal mentor, free prediction games, and Evermore Academy skills training.",
     url: "/",
   },
 };

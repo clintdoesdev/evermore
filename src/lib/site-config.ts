@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Turning Possibilities Into Experiences",
   url: "https://evermorewebsite.com.ng",
   description:
-    "Evermore is the technology ecosystem behind EverAI. Get paid to help train our AI, unlock global remote job alerts, get a personal mentor from day one, join free prediction games, and learn income-generating skills at Evermore Academy.",
+    "The official Evermore website — home of EverAI. Get paid to help train our AI, unlock global remote job alerts, get a personal mentor from day one, join free prediction games, and learn income-generating skills at Evermore Academy.",
   ogImage: "/og-image.jpg",
   keywords: [
     "Evermore",

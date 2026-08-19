@@ -42,7 +42,7 @@ export function EverAiIntro() {
         <SectionHeading
           eyebrow="Who We Are"
           title="Evermore builds EverAI — and pays you to help"
-          description="Evermore is a technology-driven company bridging the digital world and real-world opportunity. Our flagship product, EverAI, is a Generative AI assistant that gets smarter every time a member helps train it — and we share the reward."
+          description="The Evermore website is the official home of EverAI. Evermore is a technology-driven company bridging the digital world and real-world opportunity, and our flagship product, EverAI, is a Generative AI assistant that gets smarter every time a member helps train it — and we share the reward."
         />
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
